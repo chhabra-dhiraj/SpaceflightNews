@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.presentation.ui.theme
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

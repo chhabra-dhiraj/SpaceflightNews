@@ -8,12 +8,12 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Reso
 import javax.inject.Inject
 
 class ArticleRepositoryImpl @Inject constructor(
-    private val articleApi: ArticleApi
+    private val api: ArticleApi
 ) : ArticleRepository {
     override suspend fun getArticles(lat: Double, long: Double): Resource<List<Article>> {
         return try {
             Resource.Success(
-                data = articleApi.getArticles().toArticleList()
+                data = api.getArticles().toArticleList()
             )
         } catch (e: Exception) {
             e.printStackTrace()

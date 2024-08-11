@@ -32,6 +32,8 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+
+        coreLibraryDesugaringEnabled true
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -93,6 +95,9 @@ dependencies {
     // Compose Debug
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.androidx.ui.test.manifest
+
+    // Desugaring JDK for Java 8 API usage on older Android API
+    coreLibraryDesugaring libs.desugar.jdk.libs
 }
 
 // Allow references to generated code

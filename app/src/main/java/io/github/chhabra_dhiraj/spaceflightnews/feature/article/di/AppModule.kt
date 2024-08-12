@@ -22,10 +22,14 @@ object AppModule {
     @Provides
     @Singleton
     fun provideArticleApi(): ArticleApi {
+        val networkJson = Json {
+            ignoreUnknownKeys = true
+        }
+
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(
-                Json.asConverterFactory(DEFAULT_MEDIA_TYPE.toMediaType())
+                networkJson.asConverterFactory(DEFAULT_MEDIA_TYPE.toMediaType())
             )
             .build()
             .create()

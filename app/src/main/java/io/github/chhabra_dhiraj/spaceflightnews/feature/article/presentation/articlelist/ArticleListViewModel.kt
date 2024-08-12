@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.viewmodel
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Resource
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.state.ArticleListState
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +19,11 @@ class ArticleListViewModel @Inject constructor(
     var state by mutableStateOf(ArticleListState())
         private set
 
-    fun loadArticleList() {
+    init {
+        loadArticleList()
+    }
+
+    private fun loadArticleList() {
         viewModelScope.launch {
             state = state.copy(
                 isLoading = true,
@@ -41,6 +44,22 @@ class ArticleListViewModel @Inject constructor(
                         isLoading = false,
                         error = result.message
                     )
+                }
+            }
+        }
+    }
+
+    fun onEvent(event: ArticleListEvent) {
+        when (event) {
+            is ArticleListEvent.OnArticleClick -> {
+                viewModelScope.launch {
+                    // TODO
+                }
+            }
+
+            ArticleListEvent.OnRetryLoadArticleList -> {
+                viewModelScope.launch {
+                    // TODO
                 }
             }
         }

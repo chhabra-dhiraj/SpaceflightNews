@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.state
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist
 
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Article
 

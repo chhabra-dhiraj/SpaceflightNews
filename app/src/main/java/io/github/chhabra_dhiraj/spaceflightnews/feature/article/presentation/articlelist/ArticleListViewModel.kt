@@ -1,13 +1,13 @@
 package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Resource
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,8 +16,8 @@ class ArticleListViewModel @Inject constructor(
     private val repository: ArticleRepository
 ) : ViewModel() {
 
-    var state by mutableStateOf(ArticleListState())
-        private set
+    private val _state = MutableStateFlow(ArticleListState())
+    val state = _state.asStateFlow()
 
     init {
         loadArticleList()
@@ -25,25 +25,31 @@ class ArticleListViewModel @Inject constructor(
 
     private fun loadArticleList() {
         viewModelScope.launch {
-            state = state.copy(
-                isLoading = true,
-                error = null
-            )
+            _state.update {
+                it.copy(
+                    isLoading = true,
+                    error = null
+                )
+            }
             when (val result = repository.getArticles()) {
                 is Resource.Success -> {
-                    state = state.copy(
-                        articles = result.data,
-                        isLoading = false,
-                        error = null
-                    )
+                    _state.update {
+                        it.copy(
+                            articles = result.data,
+                            isLoading = false,
+                            error = null
+                        )
+                    }
                 }
 
                 is Resource.Error -> {
-                    state = state.copy(
-                        articles = null,
-                        isLoading = false,
-                        error = result.message
-                    )
+                    _state.update {
+                        it.copy(
+                            articles = null,
+                            isLoading = false,
+                            error = result.message
+                        )
+                    }
                 }
             }
         }
@@ -59,7 +65,7 @@ class ArticleListViewModel @Inject constructor(
 
             ArticleListEvent.OnRetryLoadArticleList -> {
                 viewModelScope.launch {
-                    // TODO
+                    loadArticleList()
                 }
             }
         }

@@ -10,7 +10,7 @@ import javax.inject.Inject
 class ArticleRepositoryImpl @Inject constructor(
     private val api: ArticleApi
 ) : ArticleRepository {
-    override suspend fun getArticles(lat: Double, long: Double): Resource<List<Article>> {
+    override suspend fun getArticles(): Resource<List<Article>> {
         return try {
             Resource.Success(
                 data = api.getArticles().toArticleList()

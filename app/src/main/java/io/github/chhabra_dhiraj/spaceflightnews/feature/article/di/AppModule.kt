@@ -1,0 +1,33 @@
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.di
+
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.remote.ArticleApi
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
+import retrofit2.create
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    private const val BASE_URL = "https://api.spaceflightnewsapi.net/v4/"
+    private const val DEFAULT_MEDIA_TYPE = "application/json; charset=UTF8"
+
+    @Provides
+    @Singleton
+    fun provideArticleApi(): ArticleApi {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(
+                Json.asConverterFactory(DEFAULT_MEDIA_TYPE.toMediaType())
+            )
+            .build()
+            .create()
+    }
+}

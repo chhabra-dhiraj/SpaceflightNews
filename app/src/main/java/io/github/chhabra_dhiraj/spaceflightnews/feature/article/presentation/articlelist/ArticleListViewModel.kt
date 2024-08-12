@@ -68,6 +68,12 @@ class ArticleListViewModel @Inject constructor(
                     loadArticleList()
                 }
             }
+
+            ArticleListEvent.OnRefreshLoadArticleList -> {
+                viewModelScope.launch {
+                    loadArticleList()
+                }
+            }
         }
     }
 }

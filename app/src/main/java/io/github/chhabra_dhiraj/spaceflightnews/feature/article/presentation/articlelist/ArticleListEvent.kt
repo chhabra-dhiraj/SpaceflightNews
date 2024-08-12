@@ -3,4 +3,5 @@ package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ar
 sealed interface ArticleListEvent {
     data class OnArticleClick(val articleId: Int): ArticleListEvent
     object OnRetryLoadArticleList: ArticleListEvent
+    object OnRefreshLoadArticleList: ArticleListEvent
 }

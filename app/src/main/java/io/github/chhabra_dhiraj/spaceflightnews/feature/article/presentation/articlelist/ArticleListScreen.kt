@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import io.github.chhabra_dhiraj.spaceflightnews.R
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.ArticleList
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.BlankArticleList
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.EmptyArticleListState
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.ErrorArticleListState
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.LoadingArticleListState
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.PlaceholderArticleList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,27 +74,30 @@ fun ArticleListBody(
                     }
                 )
             } else {
-                BlankArticleList(state = {
-                    EmptyArticleListState()
+                PlaceholderArticleList(state = {
+                    EmptyArticleListState(
+                        onRefresh = {
+                            onEvent(ArticleListEvent.OnRefreshLoadArticleList)
+                        }
+                    )
                 })
             }
         } ?: run {
             if (state.isLoading) {
-                BlankArticleList(state = {
+                PlaceholderArticleList(state = {
                     LoadingArticleListState()
                 })
-                return
-            }
-
-            state.error?.let {
-                BlankArticleList(state = {
-                    ErrorArticleListState(
-                        error = it,
-                        onRetry = {
-                            onEvent(ArticleListEvent.OnRetryLoadArticleList)
-                        }
-                    )
-                })
+            } else {
+                state.error?.let {
+                    PlaceholderArticleList(state = {
+                        ErrorArticleListState(
+                            error = it,
+                            onRetry = {
+                                onEvent(ArticleListEvent.OnRetryLoadArticleList)
+                            }
+                        )
+                    })
+                }
             }
         }
     }

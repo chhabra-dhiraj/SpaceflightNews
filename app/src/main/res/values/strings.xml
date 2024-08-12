@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Spaceflight News</string>
+    <string name="empty_article_list_state_title">Hi, Welcome to Spaceflight!</string>
+    <string name="empty_article_list_state_subtitle">Check the latest Spaceflight news here.</string>
 </resources>

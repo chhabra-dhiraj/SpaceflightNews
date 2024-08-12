@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import io.github.chhabra_dhiraj.spaceflightnews.R
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.ArticleList
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.BlankArticleListState
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.BlankArticleList
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.EmptyArticleListState
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.ErrorArticleListState
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.LoadingArticleListState
@@ -69,20 +69,20 @@ fun ArticleListBody(
                 }
             )
         } else {
-            BlankArticleListState(state = {
+            BlankArticleList(state = {
                 EmptyArticleListState()
             })
         }
     } ?: run {
         if (state.isLoading) {
-            BlankArticleListState(state = {
+            BlankArticleList(state = {
                 LoadingArticleListState()
             })
             return
         }
 
         state.error?.let {
-            BlankArticleListState(state = {
+            BlankArticleList(state = {
                 ErrorArticleListState(
                     error = it,
                     onRetry = {

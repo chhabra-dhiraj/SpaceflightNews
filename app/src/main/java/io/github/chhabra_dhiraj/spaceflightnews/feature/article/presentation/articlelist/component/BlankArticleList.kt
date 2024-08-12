@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun BlankArticleListState(
+fun BlankArticleList(
     state: @Composable () -> Unit
 ) {
     Box(

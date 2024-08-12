@@ -63,13 +63,7 @@ class ArticleListViewModel @Inject constructor(
                 }
             }
 
-            ArticleListEvent.OnRetryLoadArticleList -> {
-                viewModelScope.launch {
-                    loadArticleList()
-                }
-            }
-
-            ArticleListEvent.OnRefreshLoadArticleList -> {
+            ArticleListEvent.OnRefreshArticleList -> {
                 viewModelScope.launch {
                     loadArticleList()
                 }

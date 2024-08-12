@@ -6,14 +6,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.Center
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -41,11 +38,8 @@ fun PlaceholderArticleList(
 }
 
 @Composable
-fun EmptyArticleListState(
-    onRefresh: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Column(modifier = modifier) {
+fun EmptyArticleListState() {
+    Column {
         Text(
             text = stringResource(R.string.str_empty_article_list_state_title),
             color = MaterialTheme.colorScheme.primary,
@@ -57,47 +51,24 @@ fun EmptyArticleListState(
             color = MaterialTheme.colorScheme.outline, // TODO: change this with subtitle color
             fontSize = 14.sp
         )
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            colors = ButtonDefaults.buttonColors(),
-            onClick = { onRefresh() },
-            modifier = Modifier.align(CenterHorizontally)
-        ) {
-            Text(text = stringResource(R.string.btn_refresh))
-        }
     }
 }
 
 @Composable
-fun LoadingArticleListState(
-    modifier: Modifier = Modifier
-) {
+fun LoadingArticleListState() {
     CircularProgressIndicator(
-        color = MaterialTheme.colorScheme.primary,
-        modifier = modifier
+        color = MaterialTheme.colorScheme.primary
     )
 }
 
 @Composable
 fun ErrorArticleListState(
-    error: String,
-    onRetry: () -> Unit,
-    modifier: Modifier = Modifier
+    error: String
 ) {
-    Column(modifier = modifier) {
-        Text(
-            text = error,
-            color = MaterialTheme.colorScheme.error,
-            fontSize = 18.sp
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            colors = ButtonDefaults.buttonColors(),
-            onClick = { onRetry() },
-            modifier = Modifier.align(CenterHorizontally)
-        ) {
-            Text(text = stringResource(R.string.btn_retry))
-        }
-    }
+    Text(
+        text = error,
+        color = MaterialTheme.colorScheme.error,
+        fontSize = 18.sp
+    )
 }
 

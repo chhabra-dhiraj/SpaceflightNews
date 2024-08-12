@@ -4,7 +4,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -12,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import io.github.chhabra_dhiraj.spaceflightnews.R
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.ArticleList
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.EmptyArticleListState
@@ -34,6 +40,19 @@ fun ArticleListScreen(
                             .fillMaxWidth()
                     )
                 })
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    onEvent(ArticleListEvent.OnRefreshArticleList)
+                },
+                shape = RoundedCornerShape(20.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.Refresh,
+                    contentDescription = stringResource(R.string.cd_refresh_article_list)
+                )
+            }
         },
         modifier = Modifier.fillMaxSize()
     ) { contentPadding ->
@@ -75,11 +94,7 @@ fun ArticleListBody(
                 )
             } else {
                 PlaceholderArticleList(state = {
-                    EmptyArticleListState(
-                        onRefresh = {
-                            onEvent(ArticleListEvent.OnRefreshLoadArticleList)
-                        }
-                    )
+                    EmptyArticleListState()
                 })
             }
         } ?: run {
@@ -90,12 +105,7 @@ fun ArticleListBody(
             } else {
                 state.error?.let {
                     PlaceholderArticleList(state = {
-                        ErrorArticleListState(
-                            error = it,
-                            onRetry = {
-                                onEvent(ArticleListEvent.OnRetryLoadArticleList)
-                            }
-                        )
+                        ErrorArticleListState(error = it)
                     })
                 }
             }

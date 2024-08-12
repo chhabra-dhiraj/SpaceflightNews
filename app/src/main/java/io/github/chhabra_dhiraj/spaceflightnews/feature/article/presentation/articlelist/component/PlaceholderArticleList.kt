@@ -47,13 +47,13 @@ fun EmptyArticleListState(
 ) {
     Column(modifier = modifier) {
         Text(
-            text = stringResource(R.string.empty_article_list_state_title),
+            text = stringResource(R.string.str_empty_article_list_state_title),
             color = MaterialTheme.colorScheme.primary,
             fontSize = 18.sp
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = stringResource(R.string.empty_article_list_state_subtitle),
+            text = stringResource(R.string.str_empty_article_list_state_subtitle),
             color = MaterialTheme.colorScheme.outline, // TODO: change this with subtitle color
             fontSize = 14.sp
         )
@@ -63,7 +63,7 @@ fun EmptyArticleListState(
             onClick = { onRefresh() },
             modifier = Modifier.align(CenterHorizontally)
         ) {
-            Text(text = "Retry")
+            Text(text = stringResource(R.string.btn_refresh))
         }
     }
 }
@@ -96,7 +96,7 @@ fun ErrorArticleListState(
             onClick = { onRetry() },
             modifier = Modifier.align(CenterHorizontally)
         ) {
-            Text(text = "Retry")
+            Text(text = stringResource(R.string.btn_retry))
         }
     }
 }

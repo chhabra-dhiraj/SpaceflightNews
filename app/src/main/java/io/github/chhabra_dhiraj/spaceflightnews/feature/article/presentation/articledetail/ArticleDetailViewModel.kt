@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articledetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,27 +12,25 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleListViewModel @Inject constructor(
+class ArticleDetailViewModel @Inject constructor(
     private val repository: ArticleRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(ArticleListState())
+    private val _state = MutableStateFlow(ArticleDetailState())
     val state = _state.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            updateStateToLoading()
-            loadArticleList()
-        }
+        updateStateToLoading()
     }
 
-
-    private suspend fun loadArticleList() {
-        when (val result = repository.getArticleList()) {
+    private suspend fun loadArticleDetail(articleId: Int) {
+        when (val result = repository.getArticle(
+            articleId = articleId
+        )) {
             is Resource.Success -> {
                 _state.update {
                     it.copy(
-                        articles = result.data,
+                        article = result.data,
                         isLoading = false,
                         error = null
                     )
@@ -42,7 +40,7 @@ class ArticleListViewModel @Inject constructor(
             is Resource.Error -> {
                 _state.update {
                     it.copy(
-                        articles = null,
+                        article = null,
                         isLoading = false,
                         error = result.message
                     )
@@ -51,18 +49,11 @@ class ArticleListViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event: ArticleListEvent) {
+    fun onEvent(event: ArticleDetailEvent) {
         when (event) {
-            is ArticleListEvent.OnArticleClick -> {
+            is ArticleDetailEvent.LoadArticleDetail -> {
                 viewModelScope.launch {
-                    // TODO
-                }
-            }
-
-            ArticleListEvent.OnRefreshArticleList -> {
-                viewModelScope.launch {
-                    updateStateToLoading()
-                    loadArticleList()
+                    loadArticleDetail(event.articleId)
                 }
             }
         }

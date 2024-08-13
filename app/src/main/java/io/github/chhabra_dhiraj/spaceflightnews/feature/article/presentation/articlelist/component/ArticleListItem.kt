@@ -67,7 +67,7 @@ fun ArticleListItem(
 private fun ArticleListItemPreview() {
     SpaceflightNewsTheme {
         ArticleListItem(
-            article = getSampleArticleList().get(0),
+            article = getSampleArticleList()[0],
             onArticleItemClick = {}
         )
     }

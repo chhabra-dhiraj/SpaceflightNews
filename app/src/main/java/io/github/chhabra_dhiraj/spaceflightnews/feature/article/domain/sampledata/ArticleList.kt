@@ -4,7 +4,7 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Art
 import java.time.LocalDateTime
 
 /** Sample data (mainly for debugging or previews) */
-fun getSampleArticleList() = listOf<Article>(
+fun getSampleArticleList() = listOf(
     Article(
         id = 1,
         title = "Space News title",

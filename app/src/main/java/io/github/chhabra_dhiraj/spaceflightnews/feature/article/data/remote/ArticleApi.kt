@@ -9,7 +9,7 @@ interface ArticleApi {
         private const val ARTICLE_LIST = "articles/"
 
         private const val PARAM_ARTICLE_ID = "id"
-        private const val ARTICLE = "$ARTICLE_LIST/{$PARAM_ARTICLE_ID}/"
+        private const val ARTICLE = "$ARTICLE_LIST{$PARAM_ARTICLE_ID}/"
     }
 
     @GET(ARTICLE_LIST)

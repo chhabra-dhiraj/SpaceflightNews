@@ -3,6 +3,7 @@ package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.chhabra_dhiraj.spaceflightnews.NavigationEvent
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Resource
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -21,9 +22,12 @@ class ArticleDetailViewModel @Inject constructor(
     private val _state = MutableStateFlow(ArticleDetailState())
     val state = _state.asStateFlow()
 
+    private val _navigationEvent = MutableSharedFlow<NavigationEvent>()
+    val navigationEvent = _navigationEvent.asSharedFlow()
+
     // TODO: Check a better way to handle intents
-    private val _urlViewIntent = MutableSharedFlow<String>()
-    val urlIntent = _urlViewIntent.asSharedFlow()
+    private val _urlViewIntentEvent = MutableSharedFlow<String>()
+    val urlIntentEvent = _urlViewIntentEvent.asSharedFlow()
 
     init {
         updateStateToLoading()
@@ -65,7 +69,13 @@ class ArticleDetailViewModel @Inject constructor(
 
             is ArticleDetailEvent.OnViewFullArticleClick -> {
                 viewModelScope.launch {
-                    _urlViewIntent.emit(event.url)
+                    _urlViewIntentEvent.emit(event.url)
+                }
+            }
+
+            ArticleDetailEvent.OnBackButtonClick -> {
+                viewModelScope.launch {
+                    _navigationEvent.emit(NavigationEvent.NavigateBack)
                 }
             }
         }

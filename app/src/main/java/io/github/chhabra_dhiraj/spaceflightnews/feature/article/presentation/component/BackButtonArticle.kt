@@ -12,15 +12,17 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.
 
 @Composable
 fun BackButtonArticle(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onBackButtonClick: () -> Unit
 ) {
     Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_ios_24),
+        imageVector = ImageVector.vectorResource(
+            id = R.drawable.baseline_arrow_back_ios_24
+        ),
         contentDescription = null,
         modifier = modifier
             .clickable {
-                // TODO: Along with navigation implementation
-                //navController.popBackStack()
+                onBackButtonClick()
             }
     )
 }
@@ -29,6 +31,8 @@ fun BackButtonArticle(
 @Composable
 private fun BackButtonArticlePreview() {
     SpaceflightNewsTheme {
-        BackButtonArticle()
+        BackButtonArticle(
+            onBackButtonClick = {}
+        )
     }
 }

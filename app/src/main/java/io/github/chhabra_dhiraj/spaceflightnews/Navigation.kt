@@ -97,6 +97,7 @@ fun MainNavigation() {
                     }
                 }
 
+                // TODO: Find a solution for this
                 viewModel.onEvent(
                     ArticleDetailEvent
                         .LoadArticleDetail(

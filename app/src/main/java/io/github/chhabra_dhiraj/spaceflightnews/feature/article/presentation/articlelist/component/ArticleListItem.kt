@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Article
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.sampledata.getSampleArticleList
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.ImageArticle
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme.SpaceflightNewsTheme
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util.getFullDate
 
@@ -34,7 +35,7 @@ fun ArticleListItem(
             },
         verticalAlignment = Alignment.CenterVertically
     ) {
-        ArticleImage(
+        ImageArticle(
             imageUrl = article.imageUrl,
             modifier = modifier
                 .clip(
@@ -67,7 +68,7 @@ fun ArticleListItem(
 private fun ArticleListItemPreview() {
     SpaceflightNewsTheme {
         ArticleListItem(
-            article = getSampleArticleList().get(0),
+            article = getSampleArticleList()[0],
             onArticleItemClick = {}
         )
     }

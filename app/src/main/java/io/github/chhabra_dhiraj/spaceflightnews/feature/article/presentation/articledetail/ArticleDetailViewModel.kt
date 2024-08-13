@@ -1,38 +1,42 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articledetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Resource
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ArticleListViewModel @Inject constructor(
+class ArticleDetailViewModel @Inject constructor(
     private val repository: ArticleRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(ArticleListState())
+    private val _state = MutableStateFlow(ArticleDetailState())
     val state = _state.asStateFlow()
 
+    // TODO: Check a better way to handle intents
+    private val _urlViewIntent = MutableSharedFlow<String>()
+    val urlIntent = _urlViewIntent.asSharedFlow()
+
     init {
-        viewModelScope.launch {
-            updateStateToLoading()
-            loadArticleList()
-        }
+        updateStateToLoading()
     }
 
-
-    private suspend fun loadArticleList() {
-        when (val result = repository.getArticleList()) {
+    private suspend fun loadArticleDetail(articleId: Int) {
+        when (val result = repository.getArticle(
+            articleId = articleId
+        )) {
             is Resource.Success -> {
                 _state.update {
                     it.copy(
-                        articles = result.data,
+                        article = result.data,
                         isLoading = false,
                         error = null
                     )
@@ -42,7 +46,7 @@ class ArticleListViewModel @Inject constructor(
             is Resource.Error -> {
                 _state.update {
                     it.copy(
-                        articles = null,
+                        article = null,
                         isLoading = false,
                         error = result.message
                     )
@@ -51,18 +55,17 @@ class ArticleListViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event: ArticleListEvent) {
+    fun onEvent(event: ArticleDetailEvent) {
         when (event) {
-            is ArticleListEvent.OnArticleClick -> {
+            is ArticleDetailEvent.LoadArticleDetail -> {
                 viewModelScope.launch {
-                    // TODO
+                    loadArticleDetail(event.articleId)
                 }
             }
 
-            ArticleListEvent.OnRefreshArticleList -> {
+            is ArticleDetailEvent.OnViewFullArticleClick -> {
                 viewModelScope.launch {
-                    updateStateToLoading()
-                    loadArticleList()
+                    _urlViewIntent.emit(event.url)
                 }
             }
         }

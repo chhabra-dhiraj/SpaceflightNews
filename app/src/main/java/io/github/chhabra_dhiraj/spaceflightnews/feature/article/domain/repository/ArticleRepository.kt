@@ -5,6 +5,7 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Reso
 
 interface ArticleRepository {
 
-    suspend fun getArticles(): Resource<List<Article>>
+    suspend fun getArticleList(): Resource<List<Article>>
 
+    suspend fun getArticle(articleId: Int): Resource<Article>
 }

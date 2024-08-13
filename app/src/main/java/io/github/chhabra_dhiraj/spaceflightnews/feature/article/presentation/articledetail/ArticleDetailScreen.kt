@@ -31,7 +31,10 @@ fun ArticleDetailScreen(
                         modifier = Modifier
                             .padding(
                                 start = 16.dp
-                            )
+                            ),
+                        onBackButtonClick = {
+                            onEvent(ArticleDetailEvent.OnBackButtonClick)
+                        }
                     )
                 },
                 title = {})

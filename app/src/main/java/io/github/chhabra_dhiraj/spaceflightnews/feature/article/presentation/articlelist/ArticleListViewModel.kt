@@ -3,9 +3,12 @@ package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.chhabra_dhiraj.spaceflightnews.NavigationEvent
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Resource
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -18,6 +21,9 @@ class ArticleListViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(ArticleListState())
     val state = _state.asStateFlow()
+
+    private val _navigationEvent = MutableSharedFlow<NavigationEvent>()
+    val navigationEvent = _navigationEvent.asSharedFlow()
 
     init {
         viewModelScope.launch {
@@ -55,7 +61,11 @@ class ArticleListViewModel @Inject constructor(
         when (event) {
             is ArticleListEvent.OnArticleClick -> {
                 viewModelScope.launch {
-                    // TODO
+                    _navigationEvent.emit(
+                        NavigationEvent.NavigateToArticle(
+                            articleId = event.articleId
+                        )
+                    )
                 }
             }
 

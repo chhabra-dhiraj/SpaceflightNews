@@ -12,8 +12,8 @@ fun ArticleDto.toArticle() = Article(
     imageUrl = imageUrl,
     newsSite = newsSite,
     summary = summary,
-    publishedAt = publishedAt.getLocalDateTime(),
-    updatedAt = updatedAt.getLocalDateTime(),
+    publishedAt = getLocalDateTime(publishedAt),
+    updatedAt = getLocalDateTime(updatedAt),
     isFeatured = isFeatured
 )
 

@@ -16,7 +16,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    private const val BASE_URL = "https://api.spaceflightnewsapi.net/v4/"
+    // TODO: Extract below three const to an untracked place
+    private const val PREFIX_BASE_URL = "v4"
+    private const val BASE_URL = "https://api.spaceflightnewsapi.net/$PREFIX_BASE_URL/"
     private const val DEFAULT_MEDIA_TYPE = "application/json; charset=UTF8"
 
     @Provides

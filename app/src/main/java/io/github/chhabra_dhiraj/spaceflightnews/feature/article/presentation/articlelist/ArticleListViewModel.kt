@@ -31,7 +31,7 @@ class ArticleListViewModel @Inject constructor(
                     error = null
                 )
             }
-            when (val result = repository.getArticles()) {
+            when (val result = repository.getArticleList()) {
                 is Resource.Success -> {
                     _state.update {
                         it.copy(

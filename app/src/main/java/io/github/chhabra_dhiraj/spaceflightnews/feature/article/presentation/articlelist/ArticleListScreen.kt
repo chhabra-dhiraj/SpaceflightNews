@@ -11,10 +11,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,10 +20,11 @@ import androidx.compose.ui.unit.dp
 import io.github.chhabra_dhiraj.spaceflightnews.R
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.sampledata.getSampleArticleList
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.ArticleList
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.EmptyPlaceholderArticleList
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.ErrorPlaceholderArticleList
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.LoadingPlaceholderArticleList
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component.PlaceholderArticleList
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.EmptyPlaceholderArticle
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.ErrorPlaceholderArticle
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.HeaderArticle
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.LoadingPlaceholderArticle
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.PlaceholderArticle
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme.SpaceflightNewsTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,7 +37,8 @@ fun ArticleListScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    ArticleListHeader(
+                    HeaderArticle(
+                        title = stringResource(id = R.string.app_name),
                         modifier = Modifier
                             .fillMaxWidth()
                     )
@@ -64,18 +64,6 @@ fun ArticleListScreen(
 }
 
 @Composable
-fun ArticleListHeader(modifier: Modifier) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = stringResource(id = R.string.app_name)
-        )
-    }
-}
-
-@Composable
 fun ArticleListBody(
     state: ArticleListState,
     onEvent: (ArticleListEvent) -> Unit,
@@ -91,19 +79,19 @@ fun ArticleListBody(
                     }
                 )
             } else {
-                PlaceholderArticleList(placeholder = {
-                    EmptyPlaceholderArticleList()
+                PlaceholderArticle(placeholder = {
+                    EmptyPlaceholderArticle()
                 })
             }
         } ?: run {
             if (state.isLoading) {
-                PlaceholderArticleList(placeholder = {
-                    LoadingPlaceholderArticleList()
+                PlaceholderArticle(placeholder = {
+                    LoadingPlaceholderArticle()
                 })
             } else {
                 state.error?.let {
-                    PlaceholderArticleList(placeholder = {
-                        ErrorPlaceholderArticleList(error = it)
+                    PlaceholderArticle(placeholder = {
+                        ErrorPlaceholderArticle(error = it)
                     })
                 }
             }
@@ -132,10 +120,8 @@ fun ArticleListRefreshFab(
 private fun ArticleListScreenPreview() {
     SpaceflightNewsTheme {
         ArticleListScreen(
-            state =   ArticleListState(
-                articles = getSampleArticleList(),
-                isLoading = false,
-                error = null
+            state = ArticleListState(
+                articles = getSampleArticleList()
             ),
             onEvent = {}
         )
@@ -148,10 +134,8 @@ private fun ArticleListScreenPreview() {
 private fun EmptyArticleListScreenPreview() {
     SpaceflightNewsTheme {
         ArticleListScreen(
-            state =   ArticleListState(
-                articles = emptyList(),
-                isLoading = false,
-                error = null
+            state = ArticleListState(
+                articles = emptyList()
             ),
             onEvent = {}
         )
@@ -164,10 +148,8 @@ private fun EmptyArticleListScreenPreview() {
 private fun LoadingArticleListScreenPreview() {
     SpaceflightNewsTheme {
         ArticleListScreen(
-            state =   ArticleListState(
-                articles = null,
-                isLoading = true,
-                error = null
+            state = ArticleListState(
+                isLoading = true
             ),
             onEvent = {}
         )
@@ -177,12 +159,10 @@ private fun LoadingArticleListScreenPreview() {
 // For Article List Error
 @Preview
 @Composable
-private fun ArticleListScreenErrorPreview() {
+private fun ErrorArticleListScreenPreview() {
     SpaceflightNewsTheme {
         ArticleListScreen(
-            state =   ArticleListState(
-                articles = null,
-                isLoading = false,
+            state = ArticleListState(
                 // TODO: extract to a stringResource. Blocker: Using the same in data layer.
                 error = "An unknown error occurred!"
             ),

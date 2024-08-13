@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.material3.CircularProgressIndicator
@@ -15,7 +15,7 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.
 
 // TODO: Make it compatible with Previews
 @Composable
-fun ArticleImage(
+fun ImageArticle(
     imageUrl: String,
     modifier: Modifier = Modifier
 ) {
@@ -40,8 +40,8 @@ fun ArticleImage(
 
 @Preview
 @Composable
-private fun ArticleImagePreview() {
+private fun ImageArticlePreview() {
     SpaceflightNewsTheme {
-        ArticleImage(imageUrl = "")
+        ImageArticle(imageUrl = "")
     }
 }

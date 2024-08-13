@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ArticlesDto(
+data class ArticleListDto(
     @SerialName("results")
     val articles: List<ArticleDto>
 )

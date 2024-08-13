@@ -7,6 +7,6 @@ fun getLocalDateTime(value: String) = try {
     LocalDateTime.parse(value, DateTimeFormatter.ISO_DATE_TIME)
 } catch (e: Exception) {
     e.printStackTrace()
-    // To avoid app crash, and instead, use an appropriate placeholder (e.g. "Time Unknown")
+    // To avoid app crash, and instead, use an appropriate placeholder
     null
 }

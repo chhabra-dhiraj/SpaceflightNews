@@ -89,9 +89,9 @@ fun ArticleListBody(
                     LoadingPlaceholderArticle()
                 })
             } else {
-                state.error?.let {
+                state.errorRes?.let {
                     PlaceholderArticle(placeholder = {
-                        ErrorPlaceholderArticle(error = it)
+                        ErrorPlaceholderArticle(error = stringResource(id = it))
                     })
                 }
             }
@@ -163,8 +163,7 @@ private fun ErrorArticleListScreenPreview() {
     SpaceflightNewsTheme {
         ArticleListScreen(
             state = ArticleListState(
-                // TODO: extract to a stringResource. Blocker: Using the same in data layer.
-                error = "An unknown error occurred!"
+                errorRes = R.string.str_error_unknown
             ),
             onEvent = {}
         )

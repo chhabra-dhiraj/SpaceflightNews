@@ -1,11 +1,12 @@
 package io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository
 
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Article
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Resource
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.DataError
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Result
 
 interface ArticleRepository {
 
-    suspend fun getArticleList(): Resource<List<Article>>
+    suspend fun getArticleList(): Result<List<Article>, DataError.Network>
 
-    suspend fun getArticle(articleId: Int): Resource<Article>
+    suspend fun getArticle(articleId: Int): Result<Article, DataError.Network>
 }

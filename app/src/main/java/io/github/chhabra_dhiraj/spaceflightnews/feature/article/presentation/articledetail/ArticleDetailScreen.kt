@@ -7,8 +7,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import io.github.chhabra_dhiraj.spaceflightnews.R
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.sampledata.getSampleArticleList
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articledetail.component.ArticleDetail
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.BackButtonArticle
@@ -69,9 +71,9 @@ fun ArticleDetailBody(
                     LoadingPlaceholderArticle()
                 })
             } else {
-                state.error?.let {
+                state.errorRes?.let {
                     PlaceholderArticle(placeholder = {
-                        ErrorPlaceholderArticle(error = it)
+                        ErrorPlaceholderArticle(error = stringResource(id = it))
                     })
                 }
             }
@@ -114,8 +116,7 @@ private fun ErrorArticleDetailScreenPreview() {
     SpaceflightNewsTheme {
         ArticleDetailScreen(
             state = ArticleDetailState(
-                // TODO: extract to a stringResource. Blocker: Using the same in data layer.
-                error = "An unknown error occurred!"
+                errorRes = R.string.str_error_unknown
             ),
             onEvent = {}
         )

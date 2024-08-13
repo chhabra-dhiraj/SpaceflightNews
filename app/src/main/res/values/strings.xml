@@ -7,4 +7,7 @@
     <string name="cd_refresh_article_list">Refresh Article List</string>
     <string name="str_article_detail_featured">Featured Article</string>
     <string name="btn_article_detail_view_full_article">View full article</string>
+    <string name="str_error_request_timed_out">Sorry, your request timed out!</string>
+    <string name="str_error_no_internet">Please check your internet connection!</string>
+    <string name="str_error_unknown">An unknown error occurred!</string>
 </resources>

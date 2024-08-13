@@ -5,7 +5,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.chhabra_dhiraj.spaceflightnews.NavigationEvent
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Resource
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Result
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util.getErrorRes
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -33,22 +34,22 @@ class ArticleDetailViewModel @Inject constructor(
         when (val result = repository.getArticle(
             articleId = articleId
         )) {
-            is Resource.Success -> {
+            is Result.Success -> {
                 _state.update {
                     it.copy(
                         article = result.data,
                         isLoading = false,
-                        error = null
+                        errorRes = null
                     )
                 }
             }
 
-            is Resource.Error -> {
+            is Result.Error -> {
                 _state.update {
                     it.copy(
                         article = null,
                         isLoading = false,
-                        error = result.message
+                        errorRes = result.error.getErrorRes()
                     )
                 }
             }
@@ -81,7 +82,7 @@ class ArticleDetailViewModel @Inject constructor(
         _state.update {
             it.copy(
                 isLoading = true,
-                error = null
+                errorRes = null
             )
         }
     }

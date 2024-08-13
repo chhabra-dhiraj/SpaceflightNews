@@ -5,36 +5,50 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.mapper.toAr
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.remote.ArticleApi
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Article
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Resource
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.DataError
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Result
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 class ArticleRepositoryImpl @Inject constructor(
     private val api: ArticleApi
 ) : ArticleRepository {
 
-    override suspend fun getArticleList(): Resource<List<Article>> {
+    override suspend fun getArticleList(): Result<List<Article>, DataError.Network> {
         return try {
-            Resource.Success(
+            Result.Success(
                 data = api.getArticleList().toArticleList()
             )
         } catch (e: Exception) {
-            e.printStackTrace()
-            // TODO: extract string to a string resource
-            Resource.Error(message = e.message ?: "An unknown error occurred!")
+            getExceptionError(e)
         }
     }
 
-    override suspend fun getArticle(articleId: Int): Resource<Article> {
+    override suspend fun getArticle(articleId: Int): Result<Article, DataError.Network> {
         return try {
-            Resource.Success(
+            Result.Success(
                 data = api.getArticle(
                     articleId = articleId
                 ).toArticle()
             )
         } catch (e: Exception) {
-            e.printStackTrace()
-            // TODO: extract string to a string resource
-            Resource.Error(message = e.message ?: "An unknown error occurred!")
+            getExceptionError(e)
+        }
+    }
+
+    private fun <D> getExceptionError(e: Exception): Result<D, DataError.Network> {
+        e.printStackTrace()
+        return when (e) {
+            is IOException -> Result.Error(DataError.Network.NO_INTERNET)
+            is HttpException -> {
+                when (e.code()) {
+                    408 -> Result.Error(DataError.Network.REQUEST_TIMEOUT)
+                    else -> Result.Error(DataError.Network.UNKNOWN)
+                }
+            }
+
+            else -> Result.Error(DataError.Network.UNKNOWN)
         }
     }
 }

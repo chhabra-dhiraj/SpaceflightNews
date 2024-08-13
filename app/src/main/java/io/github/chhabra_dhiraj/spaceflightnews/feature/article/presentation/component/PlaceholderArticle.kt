@@ -103,8 +103,7 @@ private fun ErrorPlaceholderArticlePreview() {
     SpaceflightNewsTheme {
         PlaceholderArticle {
             ErrorPlaceholderArticle(
-                // TODO: extract to a stringResource. Blocker: Using the same in data layer.
-                error = "An unknown error occurred!"
+                error = stringResource(id = R.string.str_error_unknown)
             )
         }
     }

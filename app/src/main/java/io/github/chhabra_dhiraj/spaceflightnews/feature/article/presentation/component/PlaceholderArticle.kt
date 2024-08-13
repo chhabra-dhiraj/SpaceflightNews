@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.component
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,7 +26,7 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.
  * 3. empty list
  * */
 @Composable
-fun PlaceholderArticleList(
+fun PlaceholderArticle(
     placeholder: @Composable () -> Unit
 ) {
     Box(
@@ -40,16 +40,19 @@ fun PlaceholderArticleList(
 }
 
 @Composable
-fun EmptyPlaceholderArticleList() {
+fun EmptyPlaceholderArticle(
+    title: String = stringResource(R.string.str_empty_placeholder_article_list_title),
+    subtitle: String = stringResource(R.string.str_empty_placeholder_article_list_subtitle)
+) {
     Column {
         Text(
-            text = stringResource(R.string.str_empty_article_list_state_title),
+            text = title,
             color = MaterialTheme.colorScheme.primary,
             fontSize = 18.sp
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = stringResource(R.string.str_empty_article_list_state_subtitle),
+            text = subtitle,
             color = MaterialTheme.colorScheme.outline, // TODO: change this with subtitle color
             fontSize = 14.sp
         )
@@ -57,14 +60,14 @@ fun EmptyPlaceholderArticleList() {
 }
 
 @Composable
-fun LoadingPlaceholderArticleList() {
+fun LoadingPlaceholderArticle() {
     CircularProgressIndicator(
         color = MaterialTheme.colorScheme.primary
     )
 }
 
 @Composable
-fun ErrorPlaceholderArticleList(
+fun ErrorPlaceholderArticle(
     error: String
 ) {
     Text(
@@ -74,37 +77,35 @@ fun ErrorPlaceholderArticleList(
     )
 }
 
-
 @Preview
 @Composable
-private fun EmptyPlaceholderArticleListPreview() {
+private fun EmptyPlaceholderArticlePreview() {
     SpaceflightNewsTheme {
-        PlaceholderArticleList {
-            EmptyPlaceholderArticleList()
+        PlaceholderArticle {
+            EmptyPlaceholderArticle()
         }
     }
 }
 
 @Preview
 @Composable
-private fun LoadingPlaceholderArticleListPreview() {
+private fun LoadingPlaceholderArticlePreview() {
     SpaceflightNewsTheme {
-        PlaceholderArticleList {
-            LoadingPlaceholderArticleList()
+        PlaceholderArticle {
+            LoadingPlaceholderArticle()
         }
     }
 }
 
 @Preview
 @Composable
-private fun ErrorPlaceholderArticleListPreview() {
+private fun ErrorPlaceholderArticlePreview() {
     SpaceflightNewsTheme {
-        PlaceholderArticleList {
-            ErrorPlaceholderArticleList(
+        PlaceholderArticle {
+            ErrorPlaceholderArticle(
                 // TODO: extract to a stringResource. Blocker: Using the same in data layer.
                 error = "An unknown error occurred!"
             )
         }
     }
 }
-

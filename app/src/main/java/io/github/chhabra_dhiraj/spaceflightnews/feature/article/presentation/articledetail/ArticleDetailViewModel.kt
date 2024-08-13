@@ -25,10 +25,6 @@ class ArticleDetailViewModel @Inject constructor(
     private val _navigationEvent = MutableSharedFlow<NavigationEvent>()
     val navigationEvent = _navigationEvent.asSharedFlow()
 
-    // TODO: Check a better way to handle intents
-    private val _urlViewIntentEvent = MutableSharedFlow<String>()
-    val urlIntentEvent = _urlViewIntentEvent.asSharedFlow()
-
     init {
         updateStateToLoading()
     }
@@ -69,7 +65,7 @@ class ArticleDetailViewModel @Inject constructor(
 
             is ArticleDetailEvent.OnViewFullArticleClick -> {
                 viewModelScope.launch {
-                    _urlViewIntentEvent.emit(event.url)
+                    _navigationEvent.emit(NavigationEvent.NavigateToViewFullArticle(event.url))
                 }
             }
 

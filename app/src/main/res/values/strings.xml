@@ -2,5 +2,9 @@
     <string name="app_name">Spaceflight News</string>
     <string name="str_empty_placeholder_article_list_title">Hi! Welcome to Spaceflight News!</string>
     <string name="str_empty_placeholder_article_list_subtitle">Check the latest Spaceflight News on this app.</string>
+    <string name="str_article_detail_published_time">Published %1$s</string>
+    <string name="str_article_detail_updated_time">Updated %1$s</string>
     <string name="cd_refresh_article_list">Refresh Article List</string>
+    <string name="str_article_detail_featured">Featured Article</string>
+    <string name="btn_article_detail_view_full_article">View full article</string>
 </resources>

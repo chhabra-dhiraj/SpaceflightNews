@@ -15,7 +15,7 @@ fun BackButtonArticle(
     modifier: Modifier = Modifier
 ) {
     Icon(
-        imageVector = ImageVector.vectorResource(id = R.drawable.baseline_chevron_left_24),
+        imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_ios_24),
         contentDescription = null,
         modifier = modifier
             .clickable {

@@ -5,4 +5,5 @@ package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ar
 sealed interface ArticleDetailEvent {
     // TODO: Check if it is a good idea to initialise data with onEvent fun
     data class LoadArticleDetail(val articleId: Int) : ArticleDetailEvent
+    data class OnViewFullArticleClick(val url: String) : ArticleDetailEvent
 }

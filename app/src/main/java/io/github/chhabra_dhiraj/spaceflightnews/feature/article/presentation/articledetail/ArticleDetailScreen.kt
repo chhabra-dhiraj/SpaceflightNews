@@ -1,7 +1,6 @@
 package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articledetail
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -9,11 +8,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.sampledata.getSampleArticleList
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articledetail.component.ArticleDetail
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.BackButtonArticle
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.ErrorPlaceholderArticle
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.HeaderArticle
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.LoadingPlaceholderArticle
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.PlaceholderArticle
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme.SpaceflightNewsTheme
@@ -21,27 +20,26 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ArticleDetailScreen(
-    state: ArticleDetailState
+    state: ArticleDetailState,
+    onEvent: (ArticleDetailEvent) -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    BackButtonArticle()
-                },
-                title = {
-                    HeaderArticle(
-                        title = getArticleDetailScreenTitle(
-                            newsSite = state.article?.newsSite
-                        ),
+                    BackButtonArticle(
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .padding(
+                                start = 16.dp
+                            )
                     )
-                })
+                },
+                title = {})
         }
     ) { contentPadding ->
         ArticleDetailBody(
             state = state,
+            onEvent = onEvent,
             modifier = Modifier
                 .padding(contentPadding)
         )
@@ -51,11 +49,17 @@ fun ArticleDetailScreen(
 @Composable
 fun ArticleDetailBody(
     state: ArticleDetailState,
+    onEvent: (ArticleDetailEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
         state.article?.let {
-            ArticleDetail(article = it)
+            ArticleDetail(
+                article = it,
+                onViewFullArticleClick = { url ->
+                    onEvent(ArticleDetailEvent.OnViewFullArticleClick(url))
+                }
+            )
         } ?: run {
             if (state.isLoading) {
                 PlaceholderArticle(placeholder = {
@@ -72,12 +76,6 @@ fun ArticleDetailBody(
     }
 }
 
-// TODO: Check if need to use remember block and whether this can be a private fun or not
-@Composable
-private fun getArticleDetailScreenTitle(
-    newsSite: String?
-) = newsSite ?: ""
-
 // For Article Detail
 @Preview
 @Composable
@@ -86,7 +84,8 @@ private fun ArticleDetailScreenPreview() {
         ArticleDetailScreen(
             state = ArticleDetailState(
                 article = getSampleArticleList()[0]
-            )
+            ),
+            onEvent = {}
         )
     }
 }
@@ -99,7 +98,8 @@ private fun LoadingArticleDetailScreenPreview() {
         ArticleDetailScreen(
             state = ArticleDetailState(
                 isLoading = true
-            )
+            ),
+            onEvent = {}
         )
     }
 }
@@ -113,7 +113,8 @@ private fun ErrorArticleDetailScreenPreview() {
             state = ArticleDetailState(
                 // TODO: extract to a stringResource. Blocker: Using the same in data layer.
                 error = "An unknown error occurred!"
-            )
+            ),
+            onEvent = {}
         )
     }
 }

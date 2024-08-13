@@ -13,9 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.chhabra_dhiraj.spaceflightnews.R
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme.SpaceflightNewsTheme
 
 /**
  * For the case when the list is not available because of the following reasons:
@@ -25,7 +27,7 @@ import io.github.chhabra_dhiraj.spaceflightnews.R
  * */
 @Composable
 fun PlaceholderArticleList(
-    state: @Composable () -> Unit
+    placeholder: @Composable () -> Unit
 ) {
     Box(
         contentAlignment = Center,
@@ -33,12 +35,12 @@ fun PlaceholderArticleList(
             .fillMaxSize()
             .padding(36.dp)
     ) {
-        state()
+        placeholder()
     }
 }
 
 @Composable
-fun EmptyArticleListState() {
+fun EmptyPlaceholderArticleList() {
     Column {
         Text(
             text = stringResource(R.string.str_empty_article_list_state_title),
@@ -55,14 +57,14 @@ fun EmptyArticleListState() {
 }
 
 @Composable
-fun LoadingArticleListState() {
+fun LoadingPlaceholderArticleList() {
     CircularProgressIndicator(
         color = MaterialTheme.colorScheme.primary
     )
 }
 
 @Composable
-fun ErrorArticleListState(
+fun ErrorPlaceholderArticleList(
     error: String
 ) {
     Text(
@@ -70,5 +72,39 @@ fun ErrorArticleListState(
         color = MaterialTheme.colorScheme.error,
         fontSize = 18.sp
     )
+}
+
+
+@Preview
+@Composable
+private fun EmptyPlaceholderArticleListPreview() {
+    SpaceflightNewsTheme {
+        PlaceholderArticleList {
+            EmptyPlaceholderArticleList()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun LoadingPlaceholderArticleListPreview() {
+    SpaceflightNewsTheme {
+        PlaceholderArticleList {
+            LoadingPlaceholderArticleList()
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ErrorPlaceholderArticleListPreview() {
+    SpaceflightNewsTheme {
+        PlaceholderArticleList {
+            ErrorPlaceholderArticleList(
+                // TODO: extract to a stringResource. Blocker: Using the same in data layer.
+                error = "An unknown error occurred!"
+            )
+        }
+    }
 }
 

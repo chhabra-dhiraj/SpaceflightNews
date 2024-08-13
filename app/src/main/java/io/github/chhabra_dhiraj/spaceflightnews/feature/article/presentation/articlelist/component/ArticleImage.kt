@@ -8,9 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.SubcomposeAsyncImage
 import io.github.chhabra_dhiraj.spaceflightnews.R
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme.SpaceflightNewsTheme
 
+// TODO: Make it compatible with Previews
 @Composable
 fun ArticleImage(
     imageUrl: String,
@@ -33,4 +36,12 @@ fun ArticleImage(
         },
         modifier = modifier
     )
+}
+
+@Preview
+@Composable
+private fun ArticleImagePreview() {
+    SpaceflightNewsTheme {
+        ArticleImage(imageUrl = "")
+    }
 }

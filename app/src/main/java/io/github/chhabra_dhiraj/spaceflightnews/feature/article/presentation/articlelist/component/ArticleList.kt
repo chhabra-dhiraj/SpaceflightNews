@@ -4,8 +4,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Article
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.sampledata.getSampleArticleList
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme.SpaceflightNewsTheme
 
 @Composable
 fun ArticleList(
@@ -22,5 +25,17 @@ fun ArticleList(
                 onArticleItemClick = onArticleItemClick
             )
         }
+    }
+}
+
+
+@Preview
+@Composable
+private fun ArticleListPreview() {
+    SpaceflightNewsTheme {
+        ArticleList(
+            articles = getSampleArticleList(),
+            onArticleItemClick = {}
+        )
     }
 }

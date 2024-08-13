@@ -14,8 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Article
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.sampledata.getSampleArticleList
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme.SpaceflightNewsTheme
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util.getFullDate
 
 @Composable
@@ -55,5 +58,17 @@ fun ArticleListItem(
                 color = MaterialTheme.colorScheme.outline // TODO: Change this to subtitle
             )
         }
+    }
+}
+
+
+@Preview
+@Composable
+private fun ArticleListItemPreview() {
+    SpaceflightNewsTheme {
+        ArticleListItem(
+            article = getSampleArticleList().get(0),
+            onArticleItemClick = {}
+        )
     }
 }

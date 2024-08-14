@@ -5,8 +5,8 @@ import androidx.compose.runtime.Immutable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articledetail.BaseArticleDetailScreen
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.articlelist.BaseArticleListScreen
+import io.github.chhabra_dhiraj.spaceflightnews.presentation.articledetail.BaseArticleDetailScreen
+import io.github.chhabra_dhiraj.spaceflightnews.presentation.articlelist.BaseArticleListScreen
 import kotlinx.serialization.Serializable
 
 @Immutable

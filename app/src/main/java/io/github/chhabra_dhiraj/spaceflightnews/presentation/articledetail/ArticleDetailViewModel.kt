@@ -73,7 +73,7 @@ class ArticleDetailViewModel @Inject constructor(
 
             ArticleDetailEvent.OnBackButtonClick -> {
                 viewModelScope.launch {
-                    delay(300L) // For Smooth Transition
+                    delay(200L) // For Smooth Transition
                     _navigationEvent.emit(NavigationEvent.NavigateBack)
                 }
             }

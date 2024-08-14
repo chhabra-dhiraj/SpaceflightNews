@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing4">4dp</dimen>
+    <dimen name="spacing8">8dp</dimen>
+    <dimen name="spacing12">12dp</dimen>
+    <dimen name="spacing16">16dp</dimen>
+    <dimen name="spacing20">20dp</dimen>
+    <dimen name="spacing24">24dp</dimen>
+    <dimen name="spacing32">32dp</dimen>
+    <dimen name="spacing_article_list_fab">72dp</dimen>
+    <dimen name="height_article_detail_image">200dp</dimen>
+    <dimen name="height_article_detail_gradient">80dp</dimen>
+    <dimen name="size_rounded_corner_shape">20dp</dimen>
+    <dimen name="height_article_list_image">80dp</dimen>
+    <dimen name="spacing_article_detail_gradient">80dp</dimen>
+</resources>

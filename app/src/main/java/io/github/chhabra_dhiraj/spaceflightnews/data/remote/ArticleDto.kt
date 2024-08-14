@@ -3,7 +3,6 @@ package io.github.chhabra_dhiraj.spaceflightnews.data.remote
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-// TODO: Check if it is a good idea to make short and long version for list and detail api
 @Serializable
 data class ArticleDto(
     val id: Int,

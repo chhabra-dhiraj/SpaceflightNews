@@ -7,19 +7,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.SubcomposeAsyncImage
 import io.github.chhabra_dhiraj.spaceflightnews.R
 import io.github.chhabra_dhiraj.spaceflightnews.presentation.ui.theme.SpaceflightNewsTheme
 
-// TODO: Make it compatible with Previews
 @Composable
 fun ImageArticle(
+    modifier: Modifier = Modifier,
     imageUrl: String,
-    modifier: Modifier = Modifier
+    contentScale: ContentScale = ContentScale.Fit
 ) {
     SubcomposeAsyncImage(
+        modifier = modifier,
         model = imageUrl,
         contentDescription = null,
         loading = {
@@ -34,7 +36,7 @@ fun ImageArticle(
                 contentDescription = null
             )
         },
-        modifier = modifier
+        contentScale = contentScale
     )
 }
 

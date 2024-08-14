@@ -19,11 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import io.github.chhabra_dhiraj.spaceflightnews.R
 import io.github.chhabra_dhiraj.spaceflightnews.domain.model.Article
 import io.github.chhabra_dhiraj.spaceflightnews.domain.sampledata.getSampleArticleList
@@ -38,7 +36,6 @@ fun ArticleDetail(
 ) {
     val publishTime = article.publishedAt
     val updatedTime = article.updatedAt
-    // TODO: Check if remember is required
     val isArticleUpdated = remember(updatedTime) {
         publishTime ?: return@remember true
         updatedTime ?: return@remember true
@@ -51,7 +48,11 @@ fun ArticleDetail(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(
+                    dimensionResource(
+                        id = R.dimen.spacing16
+                    )
+                )
                 .verticalScroll(
                     state = rememberScrollState()
                 )
@@ -59,24 +60,25 @@ fun ArticleDetail(
             Text(
                 text = article.title,
                 color = MaterialTheme.colorScheme.primary,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
+                style = MaterialTheme.typography.titleLarge
             )
-            Spacer(modifier = Modifier.height(16.dp))
             Text(
+                modifier = Modifier.padding(
+                    top = dimensionResource(id = R.dimen.spacing16)
+                ),
                 text = article.newsSite,
                 color = MaterialTheme.colorScheme.primary,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium
+                style = MaterialTheme.typography.labelLarge
             )
             Text(
                 text = stringResource(
                     R.string.str_article_detail_published_time,
                     publishTime.getFullDateTime()
                 ),
-                color = MaterialTheme.colorScheme.outline, // TODO: replace this with subtitle
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Light
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                    alpha = 0.6f
+                ),
+                style = MaterialTheme.typography.labelMedium
             )
             if (isArticleUpdated) {
                 Text(
@@ -84,54 +86,80 @@ fun ArticleDetail(
                         R.string.str_article_detail_updated_time,
                         updatedTime.getFullDateTime()
                     ),
-                    color = MaterialTheme.colorScheme.outline, // TODO: replace this with subtitle
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Light
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                        alpha = 0.6f
+                    ),
+                    style = MaterialTheme.typography.labelMedium
                 )
             }
             if (article.isFeatured) {
                 Text(
                     text = stringResource(R.string.str_article_detail_featured),
-                    color = MaterialTheme.colorScheme.outline, // TODO: replace this with subtitle
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Light
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                        alpha = 0.6f
+                    ),
+                    style = MaterialTheme.typography.labelMedium
                 )
             }
-            Spacer(modifier = Modifier.height(24.dp))
             ImageArticle(
-                imageUrl = article.imageUrl,
                 modifier = Modifier
+                    .padding(
+                        top = dimensionResource(
+                            id = R.dimen.spacing24
+                        )
+                    )
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(
+                        dimensionResource(
+                            id = R.dimen.height_article_detail_image
+                        )
+                    ),
+                imageUrl = article.imageUrl
             )
-            Spacer(modifier = Modifier.height(16.dp)) // TODO: Remove spacer throughout the app
             Text(
+                modifier = Modifier.padding(
+                    top = dimensionResource(
+                        id = R.dimen.spacing16
+                    )
+                ),
                 text = article.summary,
                 color = MaterialTheme.colorScheme.primary,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Normal
+                style = MaterialTheme.typography.titleMedium
             )
-            Spacer(modifier = Modifier.height(80.dp)) // For Gradient
+            Spacer(
+                modifier = Modifier.height(
+                    dimensionResource(
+                        id = R.dimen.spacing_article_detail_gradient
+                    )
+                )
+            ) // For Gradient
         }
 
         Box(
-            contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(80.dp)
+                .height(
+                    dimensionResource(
+                        id = R.dimen.height_article_detail_gradient
+                    )
+                )
                 .align(Alignment.BottomCenter)
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(Color.Transparent, Color.Black)
                     )
-                )
+                ),
+            contentAlignment = Alignment.Center
         ) {
             Button(
                 onClick = {
                     onViewFullArticleClick(article.url)
                 }
             ) {
-                Text(text = stringResource(R.string.btn_article_detail_view_full_article))
+                Text(
+                    text = stringResource(R.string.btn_article_detail_view_full_article),
+                    style = MaterialTheme.typography.labelMedium
+                )
             }
         }
     }

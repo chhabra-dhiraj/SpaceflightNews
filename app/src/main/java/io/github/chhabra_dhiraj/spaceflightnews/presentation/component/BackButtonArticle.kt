@@ -16,14 +16,14 @@ fun BackButtonArticle(
     onBackButtonClick: () -> Unit
 ) {
     Icon(
-        imageVector = ImageVector.vectorResource(
-            id = R.drawable.baseline_arrow_back_ios_24
-        ),
-        contentDescription = null,
         modifier = modifier
             .clickable {
                 onBackButtonClick()
-            }
+            },
+        imageVector = ImageVector.vectorResource(
+            id = R.drawable.baseline_arrow_back_ios_24
+        ),
+        contentDescription = null
     )
 }
 

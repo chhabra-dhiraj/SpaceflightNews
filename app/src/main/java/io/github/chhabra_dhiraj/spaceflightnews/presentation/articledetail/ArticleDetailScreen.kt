@@ -7,8 +7,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import io.github.chhabra_dhiraj.spaceflightnews.R
 import io.github.chhabra_dhiraj.spaceflightnews.domain.sampledata.getSampleArticleList
 import io.github.chhabra_dhiraj.spaceflightnews.presentation.articledetail.component.ArticleDetail
@@ -32,7 +32,9 @@ fun ArticleDetailScreen(
                     BackButtonArticle(
                         modifier = Modifier
                             .padding(
-                                start = 16.dp
+                                start = dimensionResource(
+                                    id = R.dimen.spacing16
+                                )
                             ),
                         onBackButtonClick = {
                             onEvent(ArticleDetailEvent.OnBackButtonClick)
@@ -43,19 +45,19 @@ fun ArticleDetailScreen(
         }
     ) { contentPadding ->
         ArticleDetailBody(
-            state = state,
-            onEvent = onEvent,
             modifier = Modifier
-                .padding(contentPadding)
+                .padding(contentPadding),
+            state = state,
+            onEvent = onEvent
         )
     }
 }
 
 @Composable
 fun ArticleDetailBody(
+    modifier: Modifier = Modifier,
     state: ArticleDetailState,
-    onEvent: (ArticleDetailEvent) -> Unit,
-    modifier: Modifier = Modifier
+    onEvent: (ArticleDetailEvent) -> Unit
 ) {
     Box(modifier = modifier) {
         state.article?.let {

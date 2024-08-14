@@ -1,6 +1,7 @@
 package io.github.chhabra_dhiraj.spaceflightnews.presentation.component
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,15 +13,16 @@ import io.github.chhabra_dhiraj.spaceflightnews.presentation.ui.theme.Spacefligh
 
 @Composable
 fun HeaderArticle(
-    title: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    title: String
 ) {
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = title
+            text = title,
+            style = MaterialTheme.typography.titleLarge
         )
     }
 }

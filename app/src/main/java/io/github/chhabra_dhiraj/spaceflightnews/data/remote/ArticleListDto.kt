@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ArticleListDto(
     @SerialName("results")
-    val articles: List<ArticleDto>
+    val articleList: List<ArticleDto>
 )

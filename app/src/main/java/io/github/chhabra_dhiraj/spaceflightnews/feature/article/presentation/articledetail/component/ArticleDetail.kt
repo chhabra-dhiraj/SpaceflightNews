@@ -29,7 +29,7 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Art
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.sampledata.getSampleArticleList
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.component.ImageArticle
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.ui.theme.SpaceflightNewsTheme
-import io.github.chhabra_dhiraj.spaceflightnews.util.datetime.getFullDateTime
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util.getFullDateTime
 
 @Composable
 fun ArticleDetail(

@@ -1,8 +1,8 @@
 package io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository
 
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Article
-import io.github.chhabra_dhiraj.spaceflightnews.util.network.DataError
-import io.github.chhabra_dhiraj.spaceflightnews.util.network.Result
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.DataError
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Result
 
 interface ArticleRepository {
 

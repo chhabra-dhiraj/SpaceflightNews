@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.util.network
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util
 
 typealias RootError = Error
 

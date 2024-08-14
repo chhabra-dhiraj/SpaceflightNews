@@ -1,8 +1,8 @@
-package io.github.chhabra_dhiraj.spaceflightnews.util.error
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util
 
 import androidx.annotation.StringRes
 import io.github.chhabra_dhiraj.spaceflightnews.R
-import io.github.chhabra_dhiraj.spaceflightnews.util.network.DataError
+import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.DataError
 
 @StringRes
 fun DataError.getErrorRes(): Int {

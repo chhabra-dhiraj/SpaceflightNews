@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.util.network
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util
 
 sealed interface DataError : Error {
     // Handling below 3 errors, for now

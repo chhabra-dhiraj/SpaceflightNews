@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.util.datetime
+package io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.util
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

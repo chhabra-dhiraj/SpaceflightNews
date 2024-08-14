@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.chhabra_dhiraj.spaceflightnews.NavigationEvent
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Result
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util.getErrorRes
+import io.github.chhabra_dhiraj.spaceflightnews.util.network.Result
+import io.github.chhabra_dhiraj.spaceflightnews.util.error.getErrorRes
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow

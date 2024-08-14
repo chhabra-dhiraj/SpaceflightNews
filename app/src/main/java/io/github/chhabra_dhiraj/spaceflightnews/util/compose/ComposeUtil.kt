@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util
+package io.github.chhabra_dhiraj.spaceflightnews.util.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember

@@ -13,7 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.toRoute
 import io.github.chhabra_dhiraj.spaceflightnews.ArticleDetail
 import io.github.chhabra_dhiraj.spaceflightnews.NavigationEvent
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util.rememberFlowWithLifecycle
+import io.github.chhabra_dhiraj.spaceflightnews.util.compose.rememberFlowWithLifecycle
 
 @Composable
 fun BaseArticleDetailScreen(

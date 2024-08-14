@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.presentation.util
+package io.github.chhabra_dhiraj.spaceflightnews.util.datetime
 
 import java.time.LocalDateTime
 import java.time.ZoneId

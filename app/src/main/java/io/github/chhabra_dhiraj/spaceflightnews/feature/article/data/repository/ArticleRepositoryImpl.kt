@@ -5,8 +5,8 @@ import io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.mapper.toAr
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.remote.ArticleApi
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.model.Article
 import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.repository.ArticleRepository
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.DataError
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.domain.util.Result
+import io.github.chhabra_dhiraj.spaceflightnews.util.network.DataError
+import io.github.chhabra_dhiraj.spaceflightnews.util.network.Result
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

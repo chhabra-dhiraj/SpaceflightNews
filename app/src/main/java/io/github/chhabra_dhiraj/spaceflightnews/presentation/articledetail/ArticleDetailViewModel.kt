@@ -7,6 +7,7 @@ import io.github.chhabra_dhiraj.spaceflightnews.NavigationEvent
 import io.github.chhabra_dhiraj.spaceflightnews.domain.repository.ArticleRepository
 import io.github.chhabra_dhiraj.spaceflightnews.domain.util.Result
 import io.github.chhabra_dhiraj.spaceflightnews.presentation.util.asErrorUiText
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -72,6 +73,7 @@ class ArticleDetailViewModel @Inject constructor(
 
             ArticleDetailEvent.OnBackButtonClick -> {
                 viewModelScope.launch {
+                    delay(300L) // For Smooth Transition
                     _navigationEvent.emit(NavigationEvent.NavigateBack)
                 }
             }

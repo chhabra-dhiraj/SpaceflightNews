@@ -1,4 +1,4 @@
-package io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.repository
+package io.github.chhabra_dhiraj.spaceflightnews.data.repository
 
 import io.github.chhabra_dhiraj.spaceflightnews.data.mapper.toArticle
 import io.github.chhabra_dhiraj.spaceflightnews.data.mapper.toArticleList

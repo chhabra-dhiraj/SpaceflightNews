@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.repository.ArticleRepositoryImpl
+import io.github.chhabra_dhiraj.spaceflightnews.data.repository.ArticleRepositoryImpl
 import io.github.chhabra_dhiraj.spaceflightnews.domain.repository.ArticleRepository
 import javax.inject.Singleton
 

@@ -8,7 +8,6 @@ import io.github.chhabra_dhiraj.spaceflightnews.data.sampledata.getSampleArticle
 import io.github.chhabra_dhiraj.spaceflightnews.domain.repository.ArticleRepository
 import io.github.chhabra_dhiraj.spaceflightnews.domain.util.DataError
 import io.github.chhabra_dhiraj.spaceflightnews.domain.util.Result
-import io.github.chhabra_dhiraj.spaceflightnews.feature.article.data.repository.ArticleRepositoryImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

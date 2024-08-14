@@ -17,6 +17,6 @@ fun ArticleDto.toArticle() = Article(
     isFeatured = isFeatured
 )
 
-fun ArticleListDto.toArticleList() = articles.map {
+fun ArticleListDto.toArticleList() = articleList.map {
     it.toArticle()
 }

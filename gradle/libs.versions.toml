@@ -1,14 +1,14 @@
 [versions]
-agp = "8.5.2"
-kotlin = "1.9.0"
-coreKtx = "1.13.1"
-lifecycleRuntimeKtx = "2.8.4"
+agp = "8.9.1"
+kotlin = "1.9.25"
+coreKtx = "1.15.0"
+lifecycleRuntimeKtx = "2.8.7"
 
 #Compose
-composeBom = "2024.06.00"
-activityCompose = "1.9.1"
-lifecycleViewmodelCompose = "2.8.4"
-navigationCompose = "2.8.0-alpha08"
+composeBom = "2025.03.01"
+activityCompose = "1.10.1"
+lifecycleViewmodelCompose = "2.8.7"
+navigationCompose = "2.8.9"
 
 #Dagger Hilt
 hiltAndroid = "2.49"
@@ -26,7 +26,7 @@ kotlinxSerializationJson = "1.6.3"
 coilCompose = "2.4.0"
 
 #Desugaring JDK
-desugar_jdk_libs = "2.0.4"
+desugar_jdk_libs = "2.1.5"
 
 #Tests
 kotlinxCoroutinesTest = "1.7.3"

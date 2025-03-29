@@ -2,7 +2,7 @@
 An Android application for Spaceflight News
 
 ## Overview
-This project displays the list of articles from the [Spaceflight News API](https://spaceflightnewsapi.net/)
+This project displays the list of articles from the [Spaceflight News API]https://spaceflightnewsapi.net/)
 
 API endpoints used:
 - [https://api.spaceflightnewsapi.net/v4/articles/](https://api.spaceflightnewsapi.net/v4/articles/)

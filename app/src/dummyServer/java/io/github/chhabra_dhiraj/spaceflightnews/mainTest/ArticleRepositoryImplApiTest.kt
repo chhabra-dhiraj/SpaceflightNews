@@ -1,3 +1,5 @@
+package io.github.chhabra_dhiraj.spaceflightnews.mainTest
+
 import io.github.chhabra_dhiraj.spaceflightnews.data.remote.ArticleApi
 import io.github.chhabra_dhiraj.spaceflightnews.data.repository.ArticleRepositoryImpl
 import io.github.chhabra_dhiraj.spaceflightnews.di.AppModule

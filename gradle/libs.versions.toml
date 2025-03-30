@@ -25,8 +25,8 @@ kotlinxSerializationJson = "1.6.3"
 #Coil Compose
 coilCompose = "2.4.0"
 
-#Desugaring JDK
-desugar_jdk_libs = "2.1.5"
+#Logging with Timber
+timber = "5.0.1"
 
 #Tests
 kotlinxCoroutinesTest = "1.7.3"
@@ -86,8 +86,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
-#Desugaring JDK
-desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
+#Logging with Timber
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

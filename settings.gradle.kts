@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Spaceflight News"
-include ':app'
+include(":app")

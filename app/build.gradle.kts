@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,6 +7,9 @@ plugins {
     alias(libs.plugins.google.dagger.hilt.android)
     alias(libs.plugins.jetbrains.kotlin.serialization)
 }
+
+private val properties = Properties()
+    .apply { load(rootProject.file("local.properties").inputStream()) }
 
 android {
     namespace = "io.github.chhabra_dhiraj.spaceflightnews"
@@ -21,14 +26,38 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
     }
 
+    val baseUrl = "BASE_URL"
+    val baseUrlValueType = "String"
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            buildConfigField(
+                type = baseUrlValueType,
+                name = baseUrl,
+                value = properties.getProperty("BASE_URL_DEBUG_V4")
+            )
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+            )
+            buildConfigField(
+                type = baseUrlValueType,
+                name = baseUrl,
+                value = properties.getProperty("BASE_URL_RELEASE_V4")
+            )
+        }
+        create("dummyServer") {
+            isMinifyEnabled = false
+            buildConfigField(
+                type = baseUrlValueType,
+                name = baseUrl,
+                value = properties.getProperty("BASE_URL_DUMMY_SERVER_V4")
             )
         }
     }

@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.chhabra_dhiraj.spaceflightnews.BuildConfig
 import io.github.chhabra_dhiraj.spaceflightnews.data.remote.ArticleApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -16,8 +17,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    private const val PREFIX_BASE_URL = "v4"
-    private const val BASE_URL = "https://api.spaceflightnewsapi.net/$PREFIX_BASE_URL/"
     private const val DEFAULT_MEDIA_TYPE = "application/json; charset=UTF8"
 
     @Provides
@@ -28,7 +27,7 @@ object AppModule {
         }
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(
                 networkJson.asConverterFactory(DEFAULT_MEDIA_TYPE.toMediaType())
             )

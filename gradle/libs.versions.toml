@@ -1,11 +1,11 @@
 [versions]
-agp = "8.9.1"
-kotlin = "1.9.25"
-coreKtx = "1.15.0"
+agp = "8.9.2"
+kotlin = "2.1.20"
+coreKtx = "1.16.0"
 lifecycleRuntimeKtx = "2.8.7"
 
 #Compose
-composeBom = "2025.03.01"
+composeBom = "2025.04.00"
 activityCompose = "1.10.1"
 lifecycleViewmodelCompose = "2.8.7"
 navigationCompose = "2.8.9"
@@ -19,8 +19,8 @@ retrofit = "2.10.0"
 loggingInterceptor = "5.0.0-alpha.3"
 
 #Kotlinx Serialiazation
-kotlinxSerialization = "1.7.21"
-kotlinxSerializationJson = "1.6.3"
+kotlinxSerialization = "2.1.20"
+kotlinxSerializationJson = "1.8.1"
 
 #Coil Compose
 coilCompose = "2.4.0"
@@ -29,9 +29,11 @@ coilCompose = "2.4.0"
 timber = "5.0.1"
 
 #Tests
-kotlinxCoroutinesTest = "1.7.3"
-mockitoCore = "3.9.0"
-mockitoKotlin = "3.2.0"
+kotlinxCoroutinesTest = "1.10.1"
+mockitoCore = "5.12.0"
+mockitoKotlin = "5.4.0"
+robolectric = "4.14.1"
+mockk = "1.14.0"
 
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -74,6 +76,8 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose"
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

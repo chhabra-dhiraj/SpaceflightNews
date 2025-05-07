@@ -80,6 +80,11 @@ android {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -127,8 +132,22 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.kotlinx.coroutines.test)
 
+    // Robolectric
+    testImplementation(libs.robolectric)
+    // Mockk framework
+    testImplementation(libs.mockk)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+//
+//    androidTestImplementation "androidx.test:runner:$androidXTestVersion"
+//    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+//    // Optional -- UI testing with Espresso
+//    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+//    // Optional -- UI testing with UI Automator
+//    androidTestImplementation "androidx.test.uiautomator:uiautomator:$uiAutomatorVersion"
+//    // Optional -- UI testing with Compose
+//    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
 
     // Compose Tests
     androidTestImplementation(platform(libs.androidx.compose.bom))
